@@ -8,24 +8,18 @@
 int end = 0;
 int next = 0;
 
-//initalizes variables to hold computer (c) and player (p) # of points
-int cgoal = 0;
-int pgoal = 0;
+//initalizes the stones in each hole for player and computer                  
+//0-5 are holes, 6 is the end hole                                              
+  int player_array[7];
+  int computer_array[7];
 
-//initalizes the stones in each hole for player and computer
-int p1 = 4;
-int p2 = 4;
-int p3 = 4;
-int p4 = 4;
-int p5 = 4;
-int p6 = 4;
+  for (int i = 0; i < 6; i++) {
+    player_array[i] = 4;
+    computer_array[i] = 4;
+  }
 
-int c1 = 4;
-int c2 = 4;
-int c3 = 4;
-int c4 = 4;
-int c5 = 4;
-int c6 = 4;
+  player_array[6] = 0;
+  computer_array[6] = 0;
 
 void next_turn(int i){
   int b = c[i];
