@@ -9,31 +9,31 @@ int end = 0;
 
 //initalizes the stones in each hole for player and computer                  
 //0-5 are holes, 6 is the end hole                                              
-  int player_array[7];
-  int computer_array[7];
+  int score_array[14];
 
-  for (int i = 0; i < 6; i++) {
-    player_array[i] = 4;
-    computer_array[i] = 4;
+  for (int i = 0; i < 15; i++) {
+    if (i == 6 || i == 13) {
+      score_array[i] = 0;
+    }
+    else {
+      score_array[i] = 4;
+    }
   }
 
-  player_array[6] = 0;
-  computer_array[6] = 0;
-
-void next_turn(int i){
-  int b = c[i];
-  c[i] = 0;
-  while(b!=0){
-    i = i+1;
-    if(i>6){
-      i = 0;
+void next_turn(int position){
+  int tokens = computer_array[i];
+  computer_array[position] = 0;
+  while(tokens != 0){
+    position = position + 1;
+    if (position > 6){
+      position = 0;
       continue;
     }
-    c[i] = c[i]+1;
+    computer_array[position] = computer[position]+1;
     b = b-1;
   }
-  if(c[i]==1&&p[i]!=0){
-    cgoal= cgoal + p[i] + 1;
+  if (computer_array[position] == 1 && player_array[position] != 0){
+    cgoal = cgoal + p[i] + 1;
     c[i] = 0;
     p[i] = 0;
   }
