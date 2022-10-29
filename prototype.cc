@@ -6,7 +6,6 @@
 
 //initializes end, a variable that will tell us if the game is over or if it has ended
 int end = 0;
-int next = 0;
 
 //initalizes the stones in each hole for player and computer                  
 //0-5 are holes, 6 is the end hole                                              
