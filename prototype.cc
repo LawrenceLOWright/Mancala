@@ -8,9 +8,9 @@
 int end = 0;
 
 //initalizes the stones in each hole for player and computer                  
-//0-5 are holes, 6 is the end hole                                              
+//0-5 are holes, 6 is the end hole                                               //initalize the array to hold tokens and score
   int score_array[14];
-
+ 
   for (int i = 0; i < 15; i++) {
     if (i == 6 || i == 13) {
       score_array[i] = 0;
@@ -21,27 +21,109 @@ int end = 0;
   }
 
 void next_turn(int position){
-  int tokens = computer_array[i];
-  computer_array[position] = 0;
+  int tokens = score_array[position];
+  int turn = -1;
+  score_array[position] = 0;
+  //if we're starting on player turn, turn = 0
+  if (position < 6) {
+    turn = 0;
+  }
+  //if we're starting on computer turn, turn = 1 
+  if (position > 6) {
+    turn = 1;
+  }
   while(tokens != 0){
     position = position + 1;
-    if (position > 6){
+    if (position > 13){
       position = 0;
-      continue;
     }
-    computer_array[position] = computer[position]+1;
-    b = b-1;
+    if ((position==6 && turn==1)||(position==13 && turn==0)){
+      position = position + 1;
+    }
+    score_array[position] = score_array[position]+1;
+    tokens = tokens - 1;
   }
-  if (computer_array[position] == 1 && player_array[position] != 0){
-    cgoal = cgoal + p[i] + 1;
-    c[i] = 0;
-    p[i] = 0;
+  if (turn==0){
+    if(score_array[position]==1 && score_array[position+7]!=0){
+      score_array[6] = score_array[6] + score_array[position+7] + 1;
+      score_array[position+7] = 0;
+      score_array[position] = 0;
   }
-  if(c[i]==cgoal){
-    //current turn gets to go again
+    if(position==6){
+      //Player goes again - add code once function is complete
   }
+  }
+  if (turn==1){
+    //if we're starting on computer turn, turn = 1 
+  if (position > 6) {
+    turn = 1;
+  }
+  while(tokens != 0){
+    position = position + 1;
+    if (position > 13){
+      position = 0;
+    }
+    if ((position==6 && turn==1)||(position==13 && turn==0)){
+      position = position + 1;
+    }
+    score_array[position] = score_array[position]+1;
+    tokens = tokens - 1;
+  }
+  if (turn==0){
+    if(score_array[position]==1 && score_array[position+7]!=0){
+      score_array[6] = score_array[6] + score_array[position+7] + 1;
+      score_array[position+7] = 0;
+      score_array[position] = 0;
+  }
+    if(position==6){
+      //Player goes again - add code once function is complete
+  }
+  }
+  if (turn==1){
+    //if we're starting on computer turn, turn = 1 
+  if (position > 6) {
+    turn = 1;
+  }
+  while(tokens != 0){
+    position = position + 1;
+    if (position > 13){
+      position = 0;
+    }
+    if ((position==6 && turn==1)||(position==13 && turn==0)){
+      position = position + 1;
+    }
+    score_array[position] = score_array[position]+1;
+    tokens = tokens - 1;
+  }
+  if (turn==0){
+    if(score_array[position]==1 && score_array[position+7]!=0){
+      score_array[6] = score_array[6] + score_array[position+7] + 1;
+      score_array[position+7] = 0;
+      score_array[position] = 0;
+  }
+    if(position==6){
+      //Player goes again - add code once function is complete
+  }
+  }
+  if (turn==1){
+   if(score_array[position]==1 && score_array[position-7]!=0){
+      score_array[13] = score_array[13] + score_array[position-7] + 1;
+      score_array[position-7] = 0;
+      score_array[position] = 0;
+  }
+    if(position==13){
+      //Computer goes again - add code once function is complete                  
+  }
+  } 
   else{
-    //next person
+    if(turn==1){
+      turn = 0;
+      //Player turn
+    }
+    if(turn==0){
+      turn = 1;
+      //Computer turn
+    }
   }
 }
 
