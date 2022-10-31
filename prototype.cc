@@ -3,6 +3,10 @@
 #include <stdio.h>
 #include <limits.h>
 #include <math.h>
+#include <iostream>
+
+using namespace std;
+ 
 
 //initializes end, a variable that will tell us if the game is over or if it has ended
 int end = 0;
@@ -120,6 +124,35 @@ void next_turn(int position){
   }
 }
 
+bool gameover_check() {
+  
+  if ((score_array[6] + score_array[13]) == 48) {
+
+    if (score_array[6] > score_array[13]) {
+      cout << "Player one wins!" << endl;
+      cout  << "P1 score: " << score_array[6]<< " | P2 score: " << score_array[13] << endl;
+      return true;
+    }
+
+    else if (score_array[6] < score_array[13]) {
+      cout << "Player two wins!" << endl;
+      cout  << "P1 score: " << score_array[6]<< " | P2 score: " << score_array[13] << endl;
+      return true;
+    }
+
+    else {
+      cout << "It's a tie!" << endl;
+      cout  << "P1 score: " << score_array[6]<< " | P2 score: " << score_array[13] << endl;
+      return true;
+    }  
+  }
+
+  else {
+    return false;
+  }
+}
+
+
   int main(void) {
     for (int i = 0; i < 15; i++) {
       if (i == 6 || i == 13) {
@@ -149,6 +182,9 @@ void next_turn(int position){
       next_turn(player_input);
 
       //if game is over, break
+      if (gameover_check()) {
+        break;
+      }
   
       //computer checks if it can get an extra turn
       for (int i = 7; i < 13; i++){
