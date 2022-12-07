@@ -1,0 +1,98 @@
+#include "raylib.h"
+
+
+//------------------------------------------------------------------------------------
+// Program main entry point
+//------------------------------------------------------------------------------------
+int main(void)
+{
+    // Initialization
+    //--------------------------------------------------------------------------------------
+    const int screenWidth = 1520;
+    const int screenHeight = 450;
+
+    InitWindow(screenWidth, screenHeight, "raylib [textures] example - image drawing");
+
+    // NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
+
+
+    Image board = LoadImage("C:/Users/thesi/Downloads/game-premake-main/resources/MancalaBoard.png");             // Load image in CPU memory (RAM)
+    //(&board, (Rectangle) { 100, 10, 280, 380 });      // Crop an image piece
+    //ImageFlipHorizontal(&cat);                              // Flip cropped image horizontally
+    ImageResize(&board, 1495, 410);                            // Resize flipped-cropped image
+
+    //Image parrots = LoadImage("resources/parrots.png");     // Load image in CPU memory (RAM)
+
+    Vector2 ballPosition = { -100.0f, -100.0f };
+    Color ballColor = DARKBLUE;
+
+
+    // Draw one image over the other with a scaling of 1.5f
+    //ImageDraw(&board, board, (Rectangle) { 0, 0, (float)board.width, (float)board.height }, (Rectangle) { 30, 40, board.width * 1.5f, board.height * 1.5f }, WHITE);
+    //ImageCrop(&parrots, (Rectangle) { 0, 50, (float)parrots.width, (float)parrots.height - 100 }); // Crop resulting image
+
+    // Draw on the image with a few image draw methods
+    //ImageDrawPixel(&parrots, 10, 10, RAYWHITE);
+    //ImageDrawCircleLines(&parrots, 10, 10, 5, RAYWHITE);
+    //ImageDrawRectangle(&parrots, 5, 20, 10, 10, RAYWHITE);
+
+    //UnloadImage(board);       // Unload image from RAM
+
+    // Load custom font for frawing on image
+    //Font font = LoadFont("resources/custom_jupiter_crash.png");
+
+    // Draw over image using custom font
+    //ImageDrawTextEx(&parrots, font, "PARROTS & CAT", (Vector2) { 300, 230 }, (float)font.baseSize, -2, WHITE);
+
+    //UnloadFont(font);       // Unload custom font (already drawn used on image)
+
+    Texture2D texture = LoadTextureFromImage(board);      // Image converted to texture, uploaded to GPU memory (VRAM)
+    UnloadImage(board);   // Once image has been converted to texture and uploaded to VRAM, it can be unloaded from RAM
+
+    SetTargetFPS(60);
+    //---------------------------------------------------------------------------------------
+
+    // Main game loop
+    while (!WindowShouldClose())    // Detect window close button or ESC key
+    {
+        // Update
+        //----------------------------------------------------------------------------------
+        // TODO: Update your variables here
+        //----------------------------------------------------------------------------------
+        ballPosition = GetMousePosition();
+
+
+        // Draw
+        //----------------------------------------------------------------------------------
+        BeginDrawing();
+
+        ClearBackground(RAYWHITE);
+
+        DrawTexture(texture, screenWidth / 2 - texture.width / 2, screenHeight / 2 - texture.height / 2 - 40, WHITE);
+        DrawRectangleLines(screenWidth / 2 - texture.width / 2, screenHeight / 2 - texture.height / 2 - 40, texture.width, texture.height, DARKGRAY);
+
+        
+        DrawText("hello world", 240, 350, 10, DARKGRAY);
+        DrawText("goodbye world", 190, 370, 10, DARKGRAY);
+
+        DrawCircleV(ballPosition, 40, ballColor);
+
+        int userChoice = 0;
+
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && GetMouseY() > 205 && (GetMouseX() > 240 && GetMouseX() < 400)) {
+            ballColor = MAROON;
+            userChoice = 1;
+        }
+        EndDrawing();
+        //----------------------------------------------------------------------------------
+    }
+
+    // De-Initialization
+    //--------------------------------------------------------------------------------------
+    UnloadTexture(texture);       // Texture unloading
+
+    CloseWindow();                // Close window and OpenGL context
+    //--------------------------------------------------------------------------------------
+
+    return 0;
+}
