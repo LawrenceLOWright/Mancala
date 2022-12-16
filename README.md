@@ -1,4 +1,5 @@
 Mancala
+
 By Quinn Callahan, Ben Kiel, and Lawrence Wright
 
 Files: 
