@@ -6,6 +6,7 @@ Files:
 Mancala.cpp -> the file that contains all of the game's programming
 resources -> a folder of assets used in the game. Necessary for the game to run.
 Mancala_Time.exe -> the game's executable. 
+raylib_game.cpp -> This is where all the code we wrote is. Not to go into too much detail (that's what our final writeup is for) but the file initializes and loads all of our assets, it makes an array which represents the beads on a mancala board and modifies and reads from that array with next_turn and updateboard to facilitate a mancala game against a computer.
 
 How to run the game:
 Download the resources folder and Mancala.cpp, then double click Mancala Time.exe
