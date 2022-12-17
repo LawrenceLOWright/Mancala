@@ -5,6 +5,7 @@ By Quinn Callahan, Ben Kiel, and Lawrence Wright
 Files: 
 resources -> a folder of assets used in the game. Necessary for the game to run.
 game-premake-main.exe -> the game's executable. 
+
 raylib_game.cpp -> This is where all the code we wrote is. Not to go into too much detail (that's what our final writeup is for) but the file initializes and loads all of our assets, it makes an array which represents the beads on a mancala board and modifies and reads from that array with next_turn and updateboard to facilitate a mancala game against a computer.
 
 How to run the game:
